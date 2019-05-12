@@ -9,7 +9,7 @@ module.exports = {
   },
   rules: {
     "no-console": 0,
-    "prefer-const": 0,
+    "prefer-const": 2,
     "no-var": 2
   }
 };

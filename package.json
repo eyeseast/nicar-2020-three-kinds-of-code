@@ -1,0 +1,57 @@
+{
+  "name": "big-presentation",
+  "version": "3.6.0",
+  "description": "a presentation system for busy messy hackers",
+  "main": "lib/big.js",
+  "scripts": {
+    "test": "eslint lib/big.js && stylelint lib/big.css",
+    "doc": "documentation build lib/big.js -o docs/api.md -f md --access=public",
+    "release": "standard-version"
+  },
+  "bin": {
+    "big-presentation-init": "./bin/big-presentation-init.js",
+    "big-presentation-serve": "./bin/big-presentation-serve.js",
+    "big-presentation-offline": "./bin/big-presentation-offline.js",
+    "big-presentation-compose": "./bin/big-presentation-compose.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tmcw/big.git"
+  },
+  "keywords": [
+    "big",
+    "presentation",
+    "system",
+    "slides"
+  ],
+  "author": "Tom MacWright",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tmcw/big/issues"
+  },
+  "homepage": "https://github.com/tmcw/big#readme",
+  "devDependencies": {
+    "documentation": "^9.1.0",
+    "eslint": "^5.16.0",
+    "prettier": "^1.1.0",
+    "standard-version": "^6.0.1",
+    "stylelint": "^10.0.1",
+    "stylelint-config-standard": "^18.2.0"
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard"
+  },
+  "resolutions": {
+    "conventional-changelog": "^1.0.0"
+  },
+  "dependencies": {
+    "cpy": "^7.0.0",
+    "ecstatic": "^4.1.0",
+    "get-port": "^5.0.0",
+    "inliner": "^1.12.1",
+    "ip": "^1.1.5",
+    "marked": "^0.6.0",
+    "minimist": "^1.2.0",
+    "mustache": "^3.0.0"
+  }
+}
