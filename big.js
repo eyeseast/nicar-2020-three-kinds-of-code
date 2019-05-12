@@ -12,7 +12,7 @@ function ce(type, className = "") {
   return Object.assign(document.createElement(type), { className });
 }
 
-addEventListener("load", function() {
+addEventListener("load", () => {
   let slideDivs = Array.from(document.querySelectorAll("body > div"));
   let pc = document.body.appendChild(ce("div", "presentation-container"));
   slideDivs = slideDivs.map((slide, _i) => {
@@ -37,28 +37,19 @@ addEventListener("load", function() {
     big = (window.big = {
       current: -1,
       mode: "talk",
-      forward: forward,
-      reverse: reverse,
-      go: go,
-      length: slideDivs.length
+      length: slideDivs.length,
+      forward,
+      reverse,
+      go
     });
+
   function forward() {
     go(big.current + 1);
   }
+
   function reverse() {
     go(big.current - 1);
   }
-
-  body.className = `talk-mode ${initialBodyClass}`;
-  window.matchMedia("print").addListener(onPrint);
-  document.addEventListener("click", onClick);
-  document.addEventListener("keydown", onKeyDown);
-  document.addEventListener("touchstart", onTouchStart);
-  addEventListener("hashchange", onHashChange);
-  addEventListener("resize", onResize);
-  window.big = big;
-  console.log("This is a big presentation. You can: \n\n* press j to jump to a slide\n" + "* press p to see the print view\n* press t to go back to the talk view");
-  go(parseHash() || big.current);
 
   function go(n, force) {
     n = Math.max(0, Math.min(big.length - 1, n));
@@ -71,9 +62,7 @@ addEventListener("load", function() {
       for (let note of sc._notes) console.log("%c%s", "padding:5px;font-family:serif;font-size:18px;line-height:150%;", note);
       console.groupEnd();
     }
-    slideDivs.forEach((slide, i) => {
-      slide.style.display = i === n ? "flex" : "none";
-    });
+    for (let slide of slideDivs) slide.style.display = slide._i === n ? "" : "none";
     body.className = `talk-mode ${slideDiv.dataset.bodyClass || ""} ${initialBodyClass}`;
     body.style.cssText = `${initialBodyStyle} ${slideDiv.dataset.bodyStyle || ""}`;
     window.clearInterval(timeoutInterval);
@@ -187,66 +176,6 @@ addEventListener("load", function() {
     }
     let m = { p: onPrint, t: onTalk, j: onJump }[e.key];
     if (m) m(big.current);
-    if (big.mode !== "jump") return;
-    let { activeElement } = document;
-    if (activeElement && activeElement.classList.contains("slide")) {
-      let startIndex = slideDivs.indexOf(activeElement.parentNode),
-        columnIndexes = getColumnIndexes(activeElement);
-      jumpFocus(
-        e,
-        {
-          ArrowLeft: startIndex - 1,
-          ArrowRight: startIndex + 1,
-          ArrowDown: columnIndexes.next,
-          ArrowUp: columnIndexes.prev
-        }[e.key]
-      );
-    } else if (e.key.indexOf("Arrow") === 0) {
-      jumpFocus(e, 0);
-    }
-  }
-
-  function getColumnIndexes(activeElement) {
-    let { left } = activeElement.getBoundingClientRect(),
-      lastIndex,
-      foundSelf = false;
-    for (let i = 0; i < slideDivs.length; i++) {
-      if (slideDivs[i].firstChild.getBoundingClientRect().left === left) {
-        if (foundSelf) return { prev: lastIndex, next: i };
-        if (slideDivs[i] === activeElement.parentNode) {
-          foundSelf = true;
-        } else {
-          lastIndex = i;
-        }
-      }
-    }
-    return { prev: lastIndex };
-  }
-
-  function jumpFocus(e, i) {
-    if (!slideDivs[i]) return;
-    e.preventDefault();
-    slideDivs[i].firstChild.focus();
-  }
-
-  function onTouchStart(e) {
-    if (big.mode !== "talk") return;
-    let { pageX: startingPageX } = e.changedTouches[0];
-    document.addEventListener(
-      "touchend",
-      function(e2) {
-        let distanceTraveled = e2.changedTouches[0].pageX - startingPageX;
-        // Don't navigate if the person didn't swipe by fewer than 4 pixels
-        if (Math.abs(distanceTraveled) < 4) return;
-        if (distanceTraveled < 0) forward();
-        else reverse();
-      },
-      { once: true }
-    );
-  }
-
-  function onHashChange() {
-    if (big.mode === "talk") go(parseHash());
   }
 
   function onResize() {
@@ -258,4 +187,30 @@ addEventListener("load", function() {
     }
     resizeTo(slideDivs[big.current], width, height);
   }
+
+  window.matchMedia("print").addListener(onPrint);
+  document.addEventListener("click", onClick);
+  document.addEventListener("keydown", onKeyDown);
+  document.addEventListener("touchstart", e => {
+    if (big.mode !== "talk") return;
+    let { pageX: startingPageX } = e.changedTouches[0];
+    document.addEventListener(
+      "touchend",
+      e2 => {
+        let distanceTraveled = e2.changedTouches[0].pageX - startingPageX;
+        // Don't navigate if the person didn't swipe by fewer than 4 pixels
+        if (Math.abs(distanceTraveled) < 4) return;
+        if (distanceTraveled < 0) forward();
+        else reverse();
+      },
+      { once: true }
+    );
+  });
+  addEventListener("hashchange", () => {
+    if (big.mode === "talk") go(parseHash());
+  });
+  addEventListener("resize", onResize);
+  console.log("This is a big presentation. You can: \n\n* press j to jump to a slide\n" + "* press p to see the print view\n* press t to go back to the talk view");
+  body.className = `talk-mode ${initialBodyClass}`;
+  go(parseHash() || big.current);
 });
