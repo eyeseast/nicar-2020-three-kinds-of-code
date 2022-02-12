@@ -1,5 +1,9 @@
 # The three kinds of code you'll write in the newsroom
 
+[Watch](https://www.youtube.com/watch?v=TwJhJ44mTuE) 📺
+
+[Slides](https://eyeseast.github.io/nicar-2020-three-kinds-of-code/#0)
+
 ## Presented virtually at NICAR 2020
 
 A couple years ago, I had one of those opportunities you don't get often: I got to build a team from scratch.
