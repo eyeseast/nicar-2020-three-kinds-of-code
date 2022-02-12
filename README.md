@@ -1,251 +1,101 @@
-# Big
+# The three kinds of code you'll write in the newsroom
 
-<p align="center">
-  <img width="540" src='.github/logo.png' />
-</p>
+## Presented virtually at NICAR 2020
 
-<p align="center">
-  <strong>Big.</strong> The antidote to your presentation procrastination.
-</p>
+A couple years ago, I had one of those opportunities you don't get often: I got to build a team from scratch.
 
-A presentation system that works great for creative, hurried people making focused presentations. Stop tweaking fonts and filling slides with text. Big is a configuration-free system that naturally encourages good style.
+Not a big team, there would be three of us, and we'd have a role in basically everything that required code on a small news site -- from data journalism, to experimenting with new story forms, to a major site redesign.
 
-- [Features](#features)
-- [Quickstart installation: Glitch](#quickstart-installation--glitch)
-- [Alternative method: Local installation](#alternative-method--local-installation)
-- [Writing a presentation](#writing-a-presentation)
-- [Giving presentations](#giving-presentations)
-- [Using Big](#using-big)
-  - [Layouts & Images](#layouts---images)
-  - [Customizing the aspect ratio](#customizing-the-aspect-ratio)
-  - [Avoiding line breaks](#avoiding-line-breaks)
-  - [Auto advancing slides](#auto-advancing-slides)
-  - [Showing code](#showing-code)
-  - [Backgrounds & body classes](#backgrounds---body-classes)
-  - [Themes](#themes)
+As we got into the hiring process, I started making a list of all the skills we might need, so I could compare candidates.
 
-## Features
+[list of all possible code-related journalism skills]
 
-- The entire system is about 16kb
-- Slide layouts based on CSS Grid
-- Speakers notes appear in your developer console, which you can put on your other screen
-- Themes are just CSS, and easy to make
+This got overwhelming pretty quickly.
 
-## Quickstart installation: Glitch
+I didn't realize it at the time, but this was part of a problem I'd been struggling with in different ways since I started writing code for journalism, back when George W Bush was still president.
 
-The absolute fastest way to get started is with Glitch. Just click the link below, and you’ll get the freshest version of Big, in a Glitch app that you can edit and publish.
+It's a problem of language.
 
-<!-- Remix Button --><a href="https://glitch.com/edit/#!/remix/tmcw-big">  <img src="https://cdn.glitch.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Fremix%402x.png?1513093958726" alt="remix this" height="33"></a>
+There's an overwhelming number of skills and tools we use in writing code around news.
 
-With Glitch, your presentation will be online and open source by default. You can download it and continue to work on it offline, or if you want to start offline by default and have the files locally, follow the alternative method below 👇
+Most of those, and most job descriptions, are lumped together into titles like "news applications" or "interactives" or data journalism.
 
-## Alternative method: Local installation
+Then a few months ago, a friend asked me to talk to one of her students who was a talented photographer and also starting a comp sci program. And he wanted to know what to do with that set of skills.
 
-If you use NPM, the fastest way to get a copy of Big is this way:
+And after talking to him and thinking about the jobs I've had, I realized that ultimately, there are three kinds of code we write in newsrooms:
 
-```bash
-$ npx degit tmcw/big
-```
+Reporting. Storytelling. Product.
 
-Preview the presentation locally by double-clicking on `index.html`. Create a repository with it to share the presentation with Github Pages, or post the files to any other hosting service. You’ll want to eventually use a real server instead of opening the file - to do that, install `serve` and run it:
+And that's pretty much it.
 
-```bash
-$ npm install -g serve
-$ serve
-```
+So what do I mean by reporting, storytelling and product?
 
-## Writing a presentation
+Reporting code is, well, reporting. It's scraping, data analysis, machine learning and natural language processing. When you're using SQL, R, Pandas and Jupyter notebooks, you're probably writing code I'd call reporting.
 
-Big presentations are webpages: slides are `div` elements, and any text styling or additional elements are addable by using HTML. The text in each div is sized to fit the screen. A slide can be as simple as:
+Storytelling is, of course, what we do with all that reporting. It's our graphics, interactive or not, and maps and charts and generative text. AR and VR and 3D modeling.
 
-```html
-<div>Big</div>
-```
+And what is product? You might be thinking: We have another department that does that. They're IT, and I'm in the newsroom.
 
-If you want speakers notes - notes that you can see on your laptop screen but aren't shown on the main projector - you can use a `<notes>` element:
+And I'm here to say, more of us are doing product than we realize.
 
-```html
-<div>
-  Citrus
-  <notes>Aren't oranges, lemons, and limes great?</notes>
-</div>
-```
+Product is everything we build that isn't for just one story or project.
 
-Open your [developer console](http://debugbrowser.com/), and you'll see your speaker notes in it when you visit that slide! In most browsers, the console is detachable, so you can move it to a different screen or window when you're giving the presentation.
+It's everything we do between deadlines that makes our next project launch faster or run smoother or get a little closer to what our audience needs. (In fact, it's everywhere we talk about user needs.)
 
-That's all you need to start writing presentations!
+It's anything we need to maintain, and anything that accumulated technical debt. (You might say it is the technical debt.)
 
-## Giving presentations
+It's our app templates and starter kits that we update after we launch a project. It's our longform tool. It's our open source code. It's our analytics packages and documented best practices.
 
-You can advance slides the usual way, by clicking them. You can also use the left & right arrow keys, and the up and down arrow keys. On touch devices, you can navigate forward by tapping and also navigate forward and backwards by swiping.
+[Here's an example: Ahead of the Fire](https://www.azcentral.com/in-depth/news/local/arizona-wildfires/2019/07/22/wildfire-risks-more-than-500-spots-have-greater-hazard-than-paradise/1434502001/). This series looked a wildfire risk across the Western United States.
 
-![](./.github/big-modes.png)
+In the reporting phase, my colleagues used GIS tools to ask which communities are most at risk, and which particular risks does each community face.
 
-Big also has three modes if you want to quickly jump to a slide, or print a presentation. You can switch between modes by hitting the `t`, `p`, and `j` keys.
+The storytelling side focused on explaining those risks and the methodology behind the story.
 
-* **t**alk is the default mode. Slides are shown one at a time.
-* **p**rint: is useful for print output or as an overview: it'll include
-  two slides per printed page, and shows speakers notes along with slides
-* **j**ump: Shows many slides per page, useful for quickly finding a slide and 'jumping' to it. When you're in jump mode, you can use the arrow keys to quickly select a slide and hit Enter to jump to that slide, or click the
-  slide you want.
+And here's product: We call this the In Depth framework and it's the machinary that powers our best storytelling.
 
-## Using Big
+So why does it matter what we call these kinds of code?
 
-Big is designed to be simple, so if you just want to give a [Takahashi](https://en.wikipedia.org/wiki/Takahashi_method) style presentation with just text, you don't need to read any further! But it can also go far beyond the basics.
+Because they move at different speeds, and moving at different speeds is something I've seen every newsroom I've worked in struggle with.
 
-### Layouts & Images
+[chart of reporting, storytelling and product cadence]
 
-Let's say you want to add some pictures to a presentation. If you just want the slide to _be_ an image, you can just make it the only thing on the slide:
+Think of a project you worked on that went well. It probably started with a lot of reporting, which tapered off as the story solidified and you started to focus on storytelling.
 
-```html
-<div>
-  <img src='airplane.gif'/>
-</div>
-```
+Meanwhile, product is (or should be) moving along in a steady cadence of sprints.
 
-And Big will appropriate size and place the image in the center.
+And this is where it's important to know what kind of code we're writing, and to be able to talk about it with other people in the newsroom, especially our editors. This is where it's easy to screw things up.
 
-If you want an image and text, you'll need a little more infrastructure: this is where _layouts_ come in. See, the idea of Big is that it sizes text as big as it can be. This has the effect that if you include something else on a slide, like an image, then it'll be squeezed out by ever-expanding text. So if you want to include an image and some text, you'll need to set some ground rules for how much space each is permitted to take up. Luckily, this also lets us do flexible layouts of image and text - you can choose how they're arranged, and they'll gleefully comply.
+This is where I've screwed things up.
 
-```html
-<div
-  class='layout'
-  style='grid-template-columns: 1fr;grid-template-rows:75% 25%;'>
-  <img src='airplane.gif'/>
-  <div>A longer description!</div>
-</div>
-```
+Like trying to make something reusable too early: I wrote library because someone pitched a story related to Congress, and my response was to create a Python package. Cool. Never used it for a story. Sorry Derek Willis.
 
-So you'll see that we have two new attributes for this laid-out slide:
+Or falling in love with storytelling when it's time to move into product: This story on Zika was great. We did a dozen like it, with a little variation, each one basically a bespoke Tarbell project.
 
-`class='layout'` triggers a few styles from `big.css` that give the slide [grid layout](https://developer.mozilla.org/en-US/docs/Web/CSS/grid), make its subsections [flexbox](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox), and tweaks how images work. For all slides that use layout, they'll use the layout class.
-
-The second bit - the `style` attribute, is where the customization comes in. The MDN documentation for [grid-template-rows](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows) and [grid-template-columns](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns) is where to start if you want to learn this inside & out, but for those that tend to learn from examples, here are some!
-
-**50% / 50% split columns: picture on the left, text on the right**
-
-```html
-<div class=layout style='grid-template-columns: 50% 50%;'>
-  <img src='airplane.gif'/>
-  <div>A longer description!</div>
-</div>
-```
+After about the third one, we really should have started building tools into WordPress, but I was nervous about technical debt. This is where it helps to think in product terms.
 
-Grids read from left to right, top to bottom, unless you customize that with extra CSS. You'll need to specify at least grid-template-columns or grid-template-rows to divide up a cell: if you specify columns, it'll be divided horizontally, if rows, vertically.
+Writing storytelling code that becomes technical debt: The topper here is gorgeous. It's also built into our storytelling framework, which means we're responsible for it. Forever. Oops.
 
-**75% image on the top, 25% text on the bottom**
+I'm sure you have your own examples.
 
-```html
-<div class='layout' style='grid-template-rows:75% 25%;'>
-  <img src='airplane.gif'/>
-  <div>A longer description!</div>
-</div>
-```
+Thinking about these three distinct kinds of code can help beyond individual projects.
 
-This slide will be laid out vertically, with the image taking up 75% of the vertical space, text 25%.
+If you're looking at a job description, it's a good way to get a read on what kind of job it is, and whether it matches up with your skills or career goals. You might use it to decide which NICAR sessions to go to.
 
-***Three rows of a 25% image and 75% text***
+It helps answer the question: "Should I learn [fill in the blank]?"
 
-```html
-<div
-  class=layout
-  style='grid-template-columns: 25% 75%;grid-template-rows:repeat(3, 30%);'>
-  <img src='airplane.gif'/>
-  <div>Yes</div>
-  <img src='airplane.gif'/>
-  <div>No</div>
-  <img src='airplane.gif'/>
-  <div>Just right, a lot of text goes here.</div>
-</div>
-```
+Now you can reframe it as, "What is X best suited for?"
 
-### Customizing the aspect ratio
+"How might X be used for reporting, for storytelling, for product?"
 
-To keep presentations uniform across devices, Big keeps the aspect ratio of presentations constant by default: by default, presentations are 4:3 aspect ratio.
+One last thing:
 
-You can customize the aspect ratio by setting a `BIG_ASPECT_RATIO` variable _before_ Big is included on a page:
+When I talk about three kinds of code, I want to be very clear that I don't mean there are three kinds of coders.
 
-```html
-<script>BIG_ASPECT_RATIO=2;</script>
-<script src='big.js'></script>
-```
+As I said at the top, most of us are doing all three kinds of programming, and I think that's a good thing, because it pushes us to be better and more well-rounded, both as programmers and as journalists.
 
-You can also turn this feature off, by setting `BIG_ASPECT_RATIO` to `false`, which will let presentations occupy the aspect ratio of the device they're displayed on:
+Reporting and storytelling are still the core of our profession, and product is going to open up new ways of doing both.
 
-```html
-<script>BIG_ASPECT_RATIO=false;</script>
-<script src='big.js'></script>
-```
+We all have a lot to learn from each other.
 
-### Avoiding line breaks
-
-By default, Big will wrap lines of text. Sometimes you don't want this to happen, if you have some text that would look odd wrapped. In this case, you can use the `nowrap` class to keep some text from wrapping.
-
-```html
-<div>
-  beyond the <code>for</code> loop
-  <br />
-  <small class=nowrap>@tmcw / Tom MacWright</small>
-</div>
-```
-
-### Auto advancing slides
-
-Sometimes you'll give presentations like [PechaKucha](https://en.wikipedia.org/wiki/PechaKucha) and [Ignite](https://en.wikipedia.org/wiki/Ignite_(event)) involve auto-advancing slides. You can achieve this by adding a `data-time-to-next` attributes to slides: this will cause  them to auto-advance after a specific number of seconds:
-
-```html
-<div data-time-to-next=20>
-  My sales pitch in 20 seconds
-</div>
-```
-
-### Showing code
-
-There are many ways to do code highlighting in presentations. My personal
-philosophy is that you should never show more than 8 lines of code
-on a slide, and instead of using traditional semantic highlighting, you should
-manually add emphasis to focus points in the code.
-
-```html
-<div>
-    problem one: make some animals rock
-    <pre>var animals = <em>['cats', 'dogs']</em>;</pre>
-</div>
-```
-
-```css
-pre {
-  margin:0;
-  padding:0.2em;
-  background:#fff;
-  color:#000;
-  font-weight:normal;
-}
-
-pre em {
-  color:#000;
-  background:yellow;
-}
-```
-
-But if you want traditional code highlighting, you can include [highlight.js](https://highlightjs.org/) to do just that. You'll want to include [the library](https://highlightjs.org/download/), and use `hljs.initHighlightingOnLoad();` like [in their usage instructions](https://highlightjs.org/usage/).
-
-### Backgrounds & body classes
-
-You might want to customize the class & style of the body element for a single slide. For example, maybe you want to change the background of the full page. You can do this with two attributes: `data-body-style` and `data-body-class`:
-
-```html
-<div data-body-style="background-image:url(airplane.gif)">
-  <div>Slide will have an airplane background</div>
-</div>
-```
-
-### Themes
-
-Big presentations are hackable, so you can design yours from scratch, or by customizing one of the default themes, but there are also a few default themes so that you can get going with a solid aesthetic right off the bat.
-
-At the very least, themes are CSS files. You can pick a theme by picking one in the `themes` directory. Bundled with Big are these themes:
-
-- **dark**: near-black background and near-white text, this one is my go-to for most presentations that rely on underpowered projectors.
-- **light**: like dark, but flipped.
-- **white**: instead of tastefully off-white and off-black, this theme uses stark, literal black & white colors.
+Thank you.
